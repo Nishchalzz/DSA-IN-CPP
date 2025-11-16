@@ -23,11 +23,42 @@ public:
 
     }
 
+    void heapify(int i){
+
+        if(i>=vec.size())
+            return;
+
+        int l = 2*i + 1;
+        int r = 2*i + 2;
+
+        int maxidx = i;
+
+        if(l<vec.size() && vec[l]>vec[maxidx]){
+            maxidx = l;
+        }
+
+        if(r<vec.size() && vec[r]>vec[maxidx]){
+            maxidx = r;
+        }
+
+        swap(vec[maxidx],vec[i]);
+
+        if(maxidx != i){
+            heapify(maxidx);
+        }
+
+    }
+
     void pop(){
 
         //swap first, last
+        swap(vec[0], vec[vec.size()-1]);
 
-        //
+        //remove the last
+        vec.pop_back();
+
+        //heapify maintaint the 
+        heapify(0);
 
 
     }
@@ -52,7 +83,8 @@ int main(){
     h.push(20);
 
     cout<<h.top()<<endl;
-    cout<<h.empty();
+    h.pop();
+    cout<<h.top()<<endl;
 
 
 
