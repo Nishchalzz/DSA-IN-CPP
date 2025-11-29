@@ -8,6 +8,15 @@
     "vector": "cpp",
     "xstring": "cpp",
     "ostream": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "limits": "cpp",
+    "xutility": "cpp",
+    "map": "cpp",
+    "queue": "cpp",
+    "xiosbase": "cpp",
+    "cstdlib": "cpp",
+    "unordered_set": "cpp",
+    "xhash": "cpp",
+    "unordered_map": "cpp"
   }
 }
