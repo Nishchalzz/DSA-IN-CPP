@@ -17,6 +17,7 @@
     "cstdlib": "cpp",
     "unordered_set": "cpp",
     "xhash": "cpp",
-    "unordered_map": "cpp"
+    "unordered_map": "cpp",
+    "list": "cpp"
   }
 }

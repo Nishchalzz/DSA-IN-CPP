@@ -96,6 +96,5 @@ int main(){
     
     cout<<countSubstr("ababa");
 
-
     return 0;
 }
