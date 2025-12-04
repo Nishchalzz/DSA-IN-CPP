@@ -1,6 +1,7 @@
 #include<iostream>
 #include<list>
 #include<vector>
+#include<stack>
 #include<queue>
 #include<string>
 #include<algorithm>
@@ -37,70 +38,69 @@ public:
         }
     }
 
-    void pathHelper(int src, int dest, vector<bool> &vis, string &path){
-
-        if(src == dest){
-            cout<<path<<dest<<endl;
-            return;
-        }
-
-
+    void topHelp(int src, vector<bool> &vis, stack<int> &s){
+        
         vis[src] = true;
-        path += to_string(src);
 
         list<int> neighbours = l[src];
-
         for(int v:neighbours){
-            if(!vis[v]){
-                pathHelper(v,dest, vis, path);
-            }
+            if(!vis[v])
+                topHelp(v, vis, s);
         }
 
-        vis[src] = false;
-        path = path.substr(0,path.size()-1);
+        s.push(src);
+    }
 
-
-    } 
-
-    void pathHelperbfs(int src, int dest, vector<bool> &vis, string &path){
-        queue<int> q;
-
-        vis[src] = true;
-        q.push(src);
-
-        while(q.size()>0){
-            
-            int curr = q.front();
-            vis[curr] = true;
-            q.pop();
-            // cout<<curr;
-            path.push_back(curr);
-            //do work here
-            if(curr == dest){
-                cout<<path;
+    void topSort(){
+        vector<bool> vis(V, false);
+        stack<int> s;
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                topHelp(i, vis, s);
             }
-
-            
-            
-            
-            list<int> neighbours = l[curr];
-            for(int v:neighbours){
-                if(!vis[v]){
-                    q.push(v);
-                    
-                }
-            }
-
         }
-        
+        while(!s.empty()){
+            cout<<s.top();
+            s.pop();
+        }
 
     }
 
-    void printAllPaths(int src, int dest){
-        vector<bool> vis(V, false);
-        string path = "";
-        // pathHelper(src, dest, vis, path);
-        // pathHelperbfs(src,dest,vis,path);
+    void calcInDegree(vector<int> &indeg){
+        for(int u=0;u<V;u++){
+            list<int> neighbours = l[u];
+            for(int v:neighbours){
+                indeg[v]++;
+            }
+        }
+    }
+
+    void topSort2(){
+        vector<int> indeg(V, 0);
+        calcInDegree(indeg);
+        queue<int> q;
+
+        for(int i=0;i<V;i++){
+            if(indeg[i]==0){
+                q.push(i);
+            }
+        }
+
+        while(q.size()>0){
+            int curr = q.front();
+            q.pop();
+            cout<<curr<<" ";
+
+            list<int> n =l[curr];
+            for(int v:n){
+                indeg[v]--;
+                if(indeg[v]==0){
+                    q.push(v);
+                }
+            }
+        }
+
+        cout<<endl;
         
     }
 
@@ -111,19 +111,23 @@ public:
 
 int main(){
 
+    //DAG
+
     Graph graph(6,false);
 
-
-    graph.addEdge(3,1);
     graph.addEdge(2,3);
-    graph.addEdge(0,3);
+    graph.addEdge(3,1);
+
+    
     graph.addEdge(4,0);
     graph.addEdge(4,1);
+
+
     graph.addEdge(5,0);
     graph.addEdge(5,2);
 
     
-    graph.printAllPaths(5,1);
+    graph.topSort2();
    
 
     return 0;
