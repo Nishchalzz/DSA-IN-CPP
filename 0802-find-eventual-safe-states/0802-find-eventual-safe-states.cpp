@@ -1,32 +1,37 @@
 class Solution {
 public:
-    //iscycle 
-    bool dfs(int node, vector<vector<int>>& adj,vector<int>& vis,vector<int>& pathvis){
-        vis[node] = 1;
-        pathvis[node] = 1;
-
-        for(auto it:adj[node]){
-            if(!vis[it] && !pathvis[it]){
-                if(dfs(it,adj,vis,pathvis))
-                    return true;
-            }else if(pathvis[it]){
-                return true;
-            }
-        }
-        pathvis[node] = 0;
-        return false;
-    }
-
     vector<int> eventualSafeNodes(vector<vector<int>>& adj) {
         int n = adj.size();
         vector<int> ans;
-        for(int i=0;i<adj.size();i++){
-            vector<int> pathvis(n,0);
-            vector<int> vis(n,0);
-            if(!dfs(i,adj,vis,pathvis))
-                ans.push_back(i);
+        vector<int> adjrev[n];
+        vector<int> indeg(n,0);
+        queue<int> q;
+        for(int i=0;i<n;i++){
+            for(auto it:adj[i]){
+                adjrev[it].push_back(i);
+                indeg[i]++;
+            }
         }
 
+        for(int i=0;i<n;i++){
+            if(indeg[i]==0)
+                q.push(i);
+        }
+
+        while(!q.empty()){
+            int curr = q.front();
+            ans.push_back(curr);
+            q.pop();
+
+            for(auto it:adjrev[curr]){
+                indeg[it]--;
+                if(indeg[it]==0)
+                    q.push(it);   
+            }
+
+        }
+        
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
