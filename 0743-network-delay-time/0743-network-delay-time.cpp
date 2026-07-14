@@ -5,18 +5,18 @@ public:
         for(auto it:times){
             adj[it[0]].push_back({it[1],it[2]}); // {v,w}, {v,w}
         }
-        queue<pair<int,int>> q;
+        priority_queue<pair<int,int>> pq;
 
         vector<int> dist(n+1,INT_MAX);
-        q.push({k,0});
+        pq.push({0,k});
         dist[k] = 0;
         int maxi=0;
 
-        while(!q.empty()){
-            auto it = q.front();
-            int node = it.first;
-            int wt = it.second;
-            q.pop();
+        while(!pq.empty()){
+            auto it = pq.top();
+            int wt = it.first;
+            int node = it.second;
+            pq.pop();
 
             for(auto i:adj[node]){
                 int neigh = i.first;
@@ -24,7 +24,7 @@ public:
 
                 if(nweigh+wt<dist[neigh]){
                     dist[neigh] = wt + nweigh;
-                    q.push({neigh,dist[neigh]});
+                    pq.push({dist[neigh],neigh});
                 }
             }
         }
