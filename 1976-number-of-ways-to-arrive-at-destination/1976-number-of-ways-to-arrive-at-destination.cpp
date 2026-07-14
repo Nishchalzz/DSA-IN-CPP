@@ -25,32 +25,22 @@ public:
         pq.push({0, 0});
 
         while (!pq.empty()) {
-
-            long long d = pq.top().first;
-            int node = pq.top().second;
+            auto it = pq.top();
+            int node = it.second;
+            long dt = it.first;
             pq.pop();
 
-           
-            if (d > dist[node])
-                continue;
-
-            for (auto &it : adj[node]) {
-
-                int adjNode = it.first;
-                int wt = it.second;
-
-                if (d + wt < dist[adjNode]) {
-
-                    dist[adjNode] = d + wt;
-                    ways[adjNode] = ways[node];
-
-                    pq.push({dist[adjNode], adjNode});
-                }
-                else if (d + wt == dist[adjNode]) {
-
-                    ways[adjNode] = (ways[adjNode] + ways[node]) % MOD;
-                }
-            }
+            for(auto i:adj[node]){
+                int neigh = i.first;
+                int wt = i.second;
+                if(dist[neigh]>wt+dt){
+                    dist[neigh]=wt+dt;
+                    ways[neigh] = ways[node];
+                    pq.push({wt+dt,neigh});
+                }else if(dist[neigh] == wt +dt){
+                    ways[neigh] = (ways[neigh] + ways[node])%MOD;
+                }    
+            }  
         }
 
         return ways[n - 1];
