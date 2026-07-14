@@ -1,47 +1,52 @@
 class Solution {
-public:
-    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
-        int m = edges.size();
-        vector<vector<int>> mat(n,vector<int>(n,INT_MAX));
-        for(auto it:edges){
-            int u = it[0];
-            int v = it[1];
-            int wt = it[2];
-            mat[u][v] = wt;
-            mat[v][u] = wt;
-        }
+public: 
+    //return count of cities
+    int dijkstraalgo(vector<pair<int,int>> adj[], int n, int src, int threshold){
+        vector<int> dist(n,INT_MAX);
+        priority_queue<pair<int,int> , vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        pq.push({0,src});
+        dist[src] = 0;
+        int count = 0;
 
-        for(int i=0;i<n;i++){
-            mat[i][i] = 0;
-        }
+        while(!pq.empty()){
+            int d = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
 
-        for(int k=0;k<n;k++){
-            for(int i=0;i<n;i++){
-                for(int j=0;j<n;j++){
-                    if (mat[i][k] != INT_MAX && mat[k][j] != INT_MAX) {
-                        mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j]);
-                    }
+            for(auto it:adj[node]){
+                int v = it.first;
+                int wt = it.second;
+                if(dist[v]>wt+d){
+                    dist[v]=wt+d;
+                    pq.push({dist[v],v});
                 }
             }
         }
-
-        vector<int> count(n,0);
-
         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(mat[i][j]!=INT_MAX && mat[i][j] <= distanceThreshold)
-                    count[i]++;
-            }
+            if(dist[i] != INT_MAX && dist[i]<=threshold)
+                count++;
         }
-        int mini=count[0];
-        int miniidx = 0;
-        for(int i=1;i<n;i++){
-            if(mini>=count[i]){
-                mini = count[i];
-                miniidx = i;
-            }
-        }
+        return count;
 
-        return miniidx;
+    }
+
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+        int m = edges.size();
+        vector<pair<int,int>> adj[n]; //{v,w}
+
+        for(auto it:edges){
+            adj[it[0]].push_back({it[1],it[2]});
+            adj[it[1]].push_back({it[0],it[2]});
+        }
+        int mini = INT_MAX;
+        int idx = -1;
+        for(int i = 0;i<n;i++){
+            int c = dijkstraalgo(adj,n,i,distanceThreshold);
+            if(c<=mini){
+                mini = c;
+                idx = i;
+            }
+        }
+        return idx;
     }
 };
