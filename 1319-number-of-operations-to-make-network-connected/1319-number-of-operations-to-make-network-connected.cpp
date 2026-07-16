@@ -36,8 +36,6 @@ class Solution {
 public:
     int makeConnected(int n, vector<vector<int>>& connections) {
         disjointset ds(n);
-        int countExtra = 0;
-        int countConnection = 0;
         int totalEdge = connections.size();
         int components = n;
         for(auto it:connections){
@@ -46,10 +44,9 @@ public:
             int parU = ds.findpar(u);
             int parV = ds.findpar(v);
 
-            if(parU == parV) countExtra++;
+            if(parU == parV) continue;
             else{
                 ds.unionbyrank(u,v);
-                countConnection++;
                 components--;
             }
         }
