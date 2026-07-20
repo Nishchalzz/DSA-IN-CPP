@@ -89,6 +89,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Dynamic Programming
 |  |
 | ------- |
+| [0070-climbing-stairs](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0070-climbing-stairs) |
 | [0787-cheapest-flights-within-k-stops](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0787-cheapest-flights-within-k-stops) |
 | [1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance) |
 | [1976-number-of-ways-to-arrive-at-destination](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/1976-number-of-ways-to-arrive-at-destination) |
@@ -116,4 +117,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [1192-critical-connections-in-a-network](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/1192-critical-connections-in-a-network) |
+## Math
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0070-climbing-stairs) |
+## Memoization
+|  |
+| ------- |
+| [0070-climbing-stairs](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0070-climbing-stairs) |
 <!---LeetCode Topics End-->
