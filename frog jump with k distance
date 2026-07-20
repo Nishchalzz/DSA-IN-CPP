@@ -1,0 +1,30 @@
+class Solution {
+public:
+
+    int helper(int n, vector<int>& heights, int k)
+    {
+        if(n == 0)
+            return 0;
+
+        int mini = INT_MAX;
+
+        for(int i = 1; i <= k; i++)
+        {
+            if(n >= i)
+            {
+                mini = min(
+                    mini,
+                    helper(n-i, heights, k)
+                    + abs(heights[n] - heights[n-i])
+                );
+            }
+        }
+
+        return mini;
+    }
+
+    int frogJump(vector<int>& heights, int k)
+    {
+        return helper(heights.size()-1, heights, k);
+    }
+};
