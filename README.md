@@ -53,6 +53,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Array
 |  |
 | ------- |
+| [0198-house-robber](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0198-house-robber) |
 | [0721-accounts-merge](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0721-accounts-merge) |
 | [0778-swim-in-rising-water](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0778-swim-in-rising-water) |
 | [0827-making-a-large-island](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0827-making-a-large-island) |
@@ -90,6 +91,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0070-climbing-stairs](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0070-climbing-stairs) |
+| [0198-house-robber](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0198-house-robber) |
 | [0787-cheapest-flights-within-k-stops](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/0787-cheapest-flights-within-k-stops) |
 | [1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance) |
 | [1976-number-of-ways-to-arrive-at-destination](https://github.com/Nishchalzz/DSA-IN-CPP/tree/master/1976-number-of-ways-to-arrive-at-destination) |
