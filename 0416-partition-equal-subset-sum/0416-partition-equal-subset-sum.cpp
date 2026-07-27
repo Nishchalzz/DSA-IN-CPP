@@ -1,31 +1,5 @@
 class Solution {
 public:
-    bool helper(int idx, int target,vector<int>& nums,vector<vector<int>> dp){
-        if(target == 0)
-            return true;
-        if(idx<0)
-            return false;
-
-        if(dp[idx][target] != -1)
-            if(dp[idx][target]==1)
-                return true;
-            else 
-                return false;
-
-
-        bool pick = false;
-        if(target-nums[idx]>=0)
-            pick = helper(idx-1,target-nums[idx],nums,dp);
-        bool notpick = helper(idx-1,target,nums,dp);
-
-        if(pick || notpick)
-            dp[idx][target] = 1;
-        else 
-            dp[idx][target] = 0;
-
-        return pick || notpick;
-    }
-
     bool canPartition(vector<int>& nums) {
         int total = 0;
         int n=nums.size();
